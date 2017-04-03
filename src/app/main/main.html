@@ -1,4 +1,5 @@
 <div class="container">
+  <div class="spacer"></div>
   <div class="well" ng-show="main.filters.length > 0">
     <div class="row" ng-repeat="filter in main.filters" style="margin-top: 5px">
       <div class="col-sm-2">
@@ -21,5 +22,46 @@
   <div class="row" style="margin-top: 10px">
     <div class="col-sm-1 col-sm-offset-5"><button class="btn btn-primary" ng-click="main.addFilter()">Add Filter</button></div>
     <div class="col-sm-1"><button class="btn btn-success" ng-click="main.search()">Search</button></div>
+  </div>
+  <div class="spacer-large"></div>
+  <div class="panel panel-default">
+    <div class="panel-heading">Weighted Average Values</div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-4 text-nowrap"><strong>WA Original Principal Balance:</strong> {{main.aggregatedResult.waOriginalPrincipalBalance}}</div>
+        <div class="col-sm-4"><strong>WA DTI:</strong> {{main.aggregatedResult.wadti}}</div>
+        <div class="col-sm-4"><strong>WA Total Income:</strong> {{main.aggregatedResult.waTotalIncome}}</div>
+      </div>
+      <div class="spacer"></div>
+      <div class="row">
+        <div class="col-sm-4"><strong>WA Indexed Total Income:</strong> {{main.aggregatedResult.waIndexedTotalIncome}}</div>
+        <div class="col-sm-4"><strong>WA LTI:</strong> {{main.aggregatedResult.walti}}</div>
+        <div class="col-sm-4"><strong>WA Current Interest Rate:</strong> {{main.aggregatedResult.waCurrentInterestRate}}</div>
+      </div>
+      <div class="spacer"></div>
+      <div class="row">
+        <div class="col-sm-4"><strong>WA Indexed DTI:</strong> {{main.aggregatedResult.waIndexedDTI}}</div>
+        <div class="col-sm-4"><strong>WA Original LTV:</strong> {{main.aggregatedResult.waOriginalLTV}}</div>
+        <div class="col-sm-4"><strong>WA Original LTFV:</strong> {{main.aggregatedResult.waOriginalLTFV}}</div>
+      </div>
+      <div class="spacer"></div>
+      <div class="row">
+        <div class="col-sm-4"><strong>WA Indexed LTI:</strong> {{main.aggregatedResult.waIndexedLTI}}</div>
+        <div class="col-sm-4 text-nowrap"><strong>WA Original Foreclosure Value:</strong> {{main.aggregatedResult.waOriginalForeclosureValue}}</div>
+        <div class="col-sm-4"><strong>WA Indexed LTFV:</strong> {{main.aggregatedResult.waIndexedLTFV}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="spacer-large"></div>
+  <div class="row">
+    <div class="col-sm-12">
+      <highchart id="loanDistributionGraph" config="main.loanDistributionGraphConfig"></highchart>
+    </div>
+  </div>
+  <div class="spacer"></div>
+  <div class="row">
+    <div class="col-sm-12">
+      <highchart id="propertyDistributionGraph" config="main.propertyDistributionGraphConfig"></highchart>
+    </div>
   </div>
 </div>

@@ -12,3 +12,13 @@
 .thumbnail img.pull-right {
   width: 50px;
 }
+
+.spacer { height: 20px; width:100%; }
+
+.spacer-large { height: 50px; width:100%; }
+
+highchart {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
