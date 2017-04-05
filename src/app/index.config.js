@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   angular
@@ -12,10 +12,16 @@
 
     // Set options third-party lib
     toastrConfig.allowHtml = true;
-    toastrConfig.timeOut = 3000;
+    toastrConfig.timeOut = 2000;
     toastrConfig.positionClass = 'toast-top-right';
-    toastrConfig.preventDuplicates = true;
+    toastrConfig.preventDuplicates = false;
     toastrConfig.progressBar = true;
+
+    window.Highcharts.setOptions({
+      lang: {
+        thousandsSep: ','
+      }
+    });
   }
 
 })();

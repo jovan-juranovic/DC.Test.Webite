@@ -1,58 +1,57 @@
-<div class="container">
+<div ng-if="!main.initialized" class="spinner"><img src="assets/images/spinner.gif" /></div>
+<div class="container" ng-if="main.initialized">
   <div class="spacer"></div>
-  <div class="well" ng-show="main.filters.length > 0">
-    <div class="row" ng-repeat="filter in main.filters" style="margin-top: 5px">
-      <div class="col-sm-2">
-        <select class="form-control" ng-show="$index !== 0" ng-model="filter.operator" ng-options="x for x in main.operators"></select>
-      </div>
-      <div class="col-sm-3">
-        <select class="form-control" ng-model="filter.field" ng-options="x for x in main.fields"></select>
-      </div>
-      <div class="col-sm-2">
-        <select class="form-control" ng-model="filter.condition" ng-options="x for x in main.conditions"></select>
-      </div>
-      <div class="col-sm-3">
-        <input class="form-control" ng-model="filter.value"></input>
-      </div>
-      <div class="col-sm-2">
-        <button class="btn btn-small btn-warning" ng-click="main.removeFilter(filter.id)">Remove</button>
-      </div>
-    </div>
-  </div>
-  <div class="row" style="margin-top: 10px">
-    <div class="col-sm-1 col-sm-offset-5"><button class="btn btn-primary" ng-click="main.addFilter()">Add Filter</button></div>
-    <div class="col-sm-1"><button class="btn btn-success" ng-click="main.search()">Search</button></div>
-  </div>
-  <div class="spacer-large"></div>
   <div class="panel panel-default">
     <div class="panel-heading">Weighted Average Values</div>
     <div class="panel-body">
       <div class="row">
-        <div class="col-sm-4 text-nowrap"><strong>WA Original Principal Balance:</strong> {{main.aggregatedResult.waOriginalPrincipalBalance}}</div>
-        <div class="col-sm-4"><strong>WA DTI:</strong> {{main.aggregatedResult.wadti}}</div>
-        <div class="col-sm-4"><strong>WA Total Income:</strong> {{main.aggregatedResult.waTotalIncome}}</div>
+        <div class="col-sm-4 text-nowrap"><strong>WA Original Principal Balance:</strong> {{main.aggregatedResult.waOriginalPrincipalBalance | number: 2}}</div>
+        <div class="col-sm-4"><strong>WA DTI:</strong> {{main.aggregatedResult.wadti | number: 2}}</div>
+        <div class="col-sm-4"><strong>WA Total Income:</strong> {{main.aggregatedResult.waTotalIncome | number: 2}}</div>
       </div>
       <div class="spacer"></div>
       <div class="row">
-        <div class="col-sm-4"><strong>WA Indexed Total Income:</strong> {{main.aggregatedResult.waIndexedTotalIncome}}</div>
-        <div class="col-sm-4"><strong>WA LTI:</strong> {{main.aggregatedResult.walti}}</div>
-        <div class="col-sm-4"><strong>WA Current Interest Rate:</strong> {{main.aggregatedResult.waCurrentInterestRate}}</div>
+        <div class="col-sm-4"><strong>WA Indexed Total Income:</strong> {{main.aggregatedResult.waIndexedTotalIncome | number: 2}}</div>
+        <div class="col-sm-4"><strong>WA LTI:</strong> {{main.aggregatedResult.walti | number: 2}}</div>
+        <div class="col-sm-4"><strong>WA Current Interest Rate:</strong> {{main.aggregatedResult.waCurrentInterestRate | number: 2}}</div>
       </div>
       <div class="spacer"></div>
       <div class="row">
-        <div class="col-sm-4"><strong>WA Indexed DTI:</strong> {{main.aggregatedResult.waIndexedDTI}}</div>
-        <div class="col-sm-4"><strong>WA Original LTV:</strong> {{main.aggregatedResult.waOriginalLTV}}</div>
-        <div class="col-sm-4"><strong>WA Original LTFV:</strong> {{main.aggregatedResult.waOriginalLTFV}}</div>
+        <div class="col-sm-4"><strong>WA Indexed DTI:</strong> {{main.aggregatedResult.waIndexedDTI | number: 2}}</div>
+        <div class="col-sm-4"><strong>WA Original LTV:</strong> {{main.aggregatedResult.waOriginalLTV | number: 2}}</div>
+        <div class="col-sm-4"><strong>WA Original LTFV:</strong> {{main.aggregatedResult.waOriginalLTFV | number: 2}}</div>
       </div>
       <div class="spacer"></div>
       <div class="row">
-        <div class="col-sm-4"><strong>WA Indexed LTI:</strong> {{main.aggregatedResult.waIndexedLTI}}</div>
-        <div class="col-sm-4 text-nowrap"><strong>WA Original Foreclosure Value:</strong> {{main.aggregatedResult.waOriginalForeclosureValue}}</div>
-        <div class="col-sm-4"><strong>WA Indexed LTFV:</strong> {{main.aggregatedResult.waIndexedLTFV}}</div>
+        <div class="col-sm-4"><strong>WA Indexed LTI:</strong> {{main.aggregatedResult.waIndexedLTI | number: 2}}</div>
+        <div class="col-sm-4 text-nowrap"><strong>WA Original Foreclosure Value:</strong> {{main.aggregatedResult.waOriginalForeclosureValue | number: 2}}</div>
+        <div class="col-sm-4"><strong>WA Indexed LTFV:</strong> {{main.aggregatedResult.waIndexedLTFV | number: 2}}</div>
       </div>
     </div>
   </div>
-  <div class="spacer-large"></div>
+  <div class="panel panel-default">
+    <div class="panel-heading">Filter Data</div>
+    <div class="panel-body">
+      <div ng-repeat="filter in main.filters">
+        <div class="row">
+          <div class="col-sm-2 text-nowrap"><input type="checkbox" id="{{filter.id}}" ng-model="filter.checked"> <label for="{{filter.id}}" class="text-nowrap">{{filter.field}}</label></div>
+          <div class="col-sm-2"><select class="form-control" ng-init="filter.firstCondition = filter.firstCondition || filter.conditions[0]" ng-model="filter.firstCondition" ng-options="x for x in filter.conditions"></select></div>
+          <div class="col-sm-1"><input class="form-control" ng-model="filter.firstValue"></input></div>
+          <div class="col-sm-2"><select class="form-control" ng-init="filter.operator = filter.operator || filter.operators[0]" ng-model="filter.operator" ng-options="x for x in filter.operators"></select></div>
+          <div class="col-sm-2"><select class="form-control" ng-init="filter.secondCondition = filter.secondCondition || filter.conditions[0]" ng-model="filter.secondCondition" ng-options="x for x in filter.conditions"></select></div>
+          <div class="col-sm-1"><input class="form-control" ng-model="filter.secondValue"></input></div>
+          <div class="col-sm-2"><button class="btn" ng-click="main.clearFilter(filter.id)">Clear</button></div>
+        </div>
+        <div class="spacer"></div>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <div class="row">
+        <div class="col-sm-2 col-sm-offset-5"><button class="btn btn-primary" style="width: 100%" ng-click="main.search()"><span class="glyphicon glyphicon-search"></span></button></div>
+      </div>
+    </div>
+  </div>
+  <div class="spacer"></div>
   <div class="row">
     <div class="col-sm-12">
       <highchart id="loanDistributionGraph" config="main.loanDistributionGraphConfig"></highchart>
@@ -62,6 +61,12 @@
   <div class="row">
     <div class="col-sm-12">
       <highchart id="propertyDistributionGraph" config="main.propertyDistributionGraphConfig"></highchart>
+    </div>
+  </div>
+  <div class="spacer"></div>
+  <div class="row">
+    <div class="col-sm-12">
+      <highchart id="indexedLTFVDistributionGraph" config="main.indexedLTFVDistributionGraphConfig"></highchart>
     </div>
   </div>
 </div>
