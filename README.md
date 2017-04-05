@@ -6,13 +6,13 @@ In order to start application in local environment first start .NET Web API proj
 
 Database backup file along with stored procedures sql scripts can be found in Database folder. Connection string to the db is using Windows authentication.
 
-The most difficult part for me was writing stored procedures for test db because I'm not sure I understanded requirements and logic behind them and this is the reason I must say that I am unsure about accuracy of data displayed on the UI.
+The most difficult part for me was writing stored procedures for test db because I wasn't sure I understood requirements and logic behind them and this is the reason why I must say that I am unsure about data accuracy displayed on the UI.
 
 ## Unfinished tasks and further improvements
 
-Here is list of assignments that I didn't finish in time and functionalities I would like to fix or improve:
+Here is a list of assignments that I haven't finished in time and functionalities I would like to fix or improve:
 
-- Tests – write more unit tests on both Back-End and Front-end.
+- Tests – write more unit tests on both Back-End and Front-End.
 - Database improvements – to add indexes based on results with 4M rows using SSMS execution plan and statistics.
 - Extend database to 4M records and test performances.
 - Search filters on Back-End - rethink implementation; current implementation is pretty coupled with lots of code smells.
@@ -22,4 +22,4 @@ Here is list of assignments that I didn't finish in time and functionalities I w
 - Overall UX and styling of application
 - Print whole page
 
-Of course this and all other parts that I have not included in this list will be discussed on the interview.
+Of course, this and all other parts that I have not included in this list will be discussed during the interview.
