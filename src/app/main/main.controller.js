@@ -86,6 +86,7 @@
       });
 
       if (checkedFilters.length == 0) {
+        vm.initialized = true;
         toastr.warning("At least one filter should be selected.");
         return;
       }
